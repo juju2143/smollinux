@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo -n "Mounting filesystems... "
+mount -t devtmpfs none /dev
+mount -t proc none /proc
+mount -t sysfs none /sys
+echo "ok"
+
+echo "Welcome to Yuki's Smol Linux!"
+exec /bin/sh

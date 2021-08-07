@@ -1,0 +1,6 @@
+*.img
+initrd/*
+!initrd/dev
+!initrd/etc
+!initrd/proc
+!initrd/sys
