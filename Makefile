@@ -15,7 +15,7 @@ base.img:
 	mkfs.msdos -i 21430001 -n SMOLBASE base.img
 	syslinux -i base.img
 
-linux/arch/x86/boot/bzImage: linux/.config initrd/bin/busybox initrd/dev/console
+linux/arch/x86/boot/bzImage: linux/.config initrd/bin/busybox
 	make -C linux oldconfig
 	make -C linux $(MAKEFLAGS)
 
@@ -23,8 +23,7 @@ initrd/bin/busybox: busybox/.config
 	make -C busybox oldconfig
 	make -C busybox CC=musl-gcc $(MAKEFLAGS)
 	make -C busybox CC=musl-gcc $(MAKEFLAGS) install
-
-initrd/dev/console:
+	mkdir initrd/{dev,proc,sys}
 	sudo mknod -m 644 initrd/dev/console c 5 1
 
 busybox/.config:
